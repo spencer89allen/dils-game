@@ -1,8 +1,8 @@
 export default {
   type: Phaser.AUTO,
   parent: "es6-template",
-  width: 640,
-  height: 512,
+  width: 700,
+  height: 400,
   pixelArt: true,
   roundPixels: true,
   physics: {

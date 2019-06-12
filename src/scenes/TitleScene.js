@@ -7,6 +7,7 @@ export default class TitleScene extends Phaser.Scene {
 
   create() {
     this.createTitle();
+    this.scene.start('Game');
   }
 
   centerObject(gameObject, offset = 0) {

@@ -102,6 +102,7 @@ export default class PreloaderScene extends Phaser.Scene {
 
   loadAssets() {
     // load assets for game
+    this.load.image('background', 'assets/background-black copy.png')
   }
 
   ready() {
