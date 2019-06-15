@@ -1,4 +1,5 @@
 import 'phaser';
+import Missiles from '../groups/Missiles';
 
 
 export default class Ship extends Phaser.GameObjects.Sprite {
@@ -44,8 +45,12 @@ export default class Ship extends Phaser.GameObjects.Sprite {
           else {
             this.body.setVelocityX(0)
             this.body.setVelocityY(0)
-          }
+          } 
 
-        
+          if(Phaser.Input.Keyboard.JustDown(this.scene.spaceKey)) {
+            this.scene.missile.fireMissile(this.body.x +13, this.body.y)
+          }
     }
+
+    
 }

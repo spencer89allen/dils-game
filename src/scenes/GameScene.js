@@ -1,5 +1,7 @@
 import "phaser";
 import Ship from '../sprites/Ship'
+import Missiles from "../groups/Missiles";
+import Astroids from "../groups/Astroids";
 
 export default class GameScene extends Phaser.Scene {
   constructor() {
@@ -22,7 +24,12 @@ export default class GameScene extends Phaser.Scene {
     this.cursors = this.input.keyboard.createCursorKeys();
 
     let { width, height } = this.sys.game.canvas;
+
+    this.missile = new Missiles(this.physics.world, this, []);
+
+    this.spaceKey = this.input.keyboard.addKey( Phaser.Input.Keyboard.KeyCodes.SPACE )
     
+    this.astroid = new Astroids(this.physics.world, this, []);
   }
   
   createCursor() {
@@ -39,9 +46,9 @@ export default class GameScene extends Phaser.Scene {
       this.player.update(time, delta, this.cursors)
       
 
+      let missile = this.missile.getFirstAlive()
+      missile === null ? null : missile.body.y < 0 ? this.missile.disableMissile(missile) : null
 
     }
-
-
   }
 }
