@@ -17,7 +17,7 @@ export default class Ship extends Phaser.GameObjects.Sprite {
         this.setScale(0.5);
 
         // this.body.setCollideWorldBounds(true);
-
+      this.isAlive = true;
 
         
     }

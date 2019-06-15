@@ -30,6 +30,8 @@ export default class GameScene extends Phaser.Scene {
     this.spaceKey = this.input.keyboard.addKey( Phaser.Input.Keyboard.KeyCodes.SPACE )
     
     this.astroid = new Astroids(this.physics.world, this, []);
+
+    this.addColliders()
   }
   
   createCursor() {
@@ -42,7 +44,7 @@ export default class GameScene extends Phaser.Scene {
 
     this.background.tilePositionY -= 1;
 
-    if (this.player) {
+    if (this.player.isAlive) {
       this.player.update(time, delta, this.cursors)
       
 
@@ -50,5 +52,29 @@ export default class GameScene extends Phaser.Scene {
       missile === null ? null : missile.body.y < 0 ? this.missile.disableMissile(missile) : null
 
     }
+  }
+
+  addColliders() {
+    this.physics.add.collider(this.player, this.astroid.getChildren(), (player, astroid) => {
+      player.isAlive = false;
+      player.body.setEnable(false)
+      player.destroy();
+
+      this.physics.pause();
+      this.add.text(180, 250, 'Game Over', { fontSize: '15px', fill: '#ffffff' });
+      this.add.text(152, 270, 'Click to Restart', { fontSize: '15px', fill: '#ffffff' });
+      this.input.on('pointerup', () =>{
+        // gameState.score = 0;
+      this.scene.restart();
+      });
+
+    })
+  }
+
+  stopTimerEvents() {
+
+      // bugGenLoop.destroy();
+     
+
   }
 }
