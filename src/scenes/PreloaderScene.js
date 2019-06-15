@@ -106,6 +106,7 @@ export default class PreloaderScene extends Phaser.Scene {
     this.load.image('ship', 'assets/SimplePixelSpaceships_4x_Size copy.png')
     this.load.image('missile', 'assets/SimplePixelGoodMissile_4x_Size copy.png')
     this.load.image('astroid', 'assets/SimplePixelAstroid_4x_Size copy.png')
+    this.load.image('enemyShip', 'assets/SimplePixelBADSpaceships_4x_Size copy.png')
     
   }
 

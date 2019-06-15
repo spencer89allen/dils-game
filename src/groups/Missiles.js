@@ -33,7 +33,7 @@ export default class Missiles extends Phaser.Physics.Arcade.Group {
        if(!missile.body) {
            this.scene.physics.add.existing(missile)
        } 
-       missile.setScale(0.3);
+       missile.setScale(0.2);
        missile.body.setEnable(true);
     //    missile.setPosition(x, y);
        missile.setVisible(true);

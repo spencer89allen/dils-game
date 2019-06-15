@@ -2,6 +2,7 @@ import "phaser";
 import Ship from '../sprites/Ship'
 import Missiles from "../groups/Missiles";
 import Astroids from "../groups/Astroids";
+import EnemyShips from "../groups/EnemyShips";
 
 export default class GameScene extends Phaser.Scene {
   constructor() {
@@ -31,6 +32,8 @@ export default class GameScene extends Phaser.Scene {
     
     this.astroid = new Astroids(this.physics.world, this, []);
 
+    this.enemyShip = new EnemyShips(this.physics.world, this, [])
+
     this.addColliders()
   }
   
@@ -55,6 +58,7 @@ export default class GameScene extends Phaser.Scene {
   }
 
   addColliders() {
+    
     this.physics.add.collider(this.player, this.astroid.getChildren(), (player, astroid) => {
       player.isAlive = false;
       player.body.setEnable(false)
@@ -69,12 +73,19 @@ export default class GameScene extends Phaser.Scene {
       });
 
     })
+
+    this.physics.add.collider(this.missile, this.astroid.getChildren(), (astroid, missile) => {
+      missile.isAlive = false;
+      missile.body.setEnable(false)
+      missile.destroy();
+    });
+
+    this.physics.add.collider(this.missile, this.enemyShip, (missile, enemyShip) => {
+      enemyShip.isAlive = false;
+      enemyShip.body.setEnable(false)
+      enemyShip.destroy();
+    });
   }
 
-  stopTimerEvents() {
-
-      // bugGenLoop.destroy();
-     
-
-  }
+  
 }
