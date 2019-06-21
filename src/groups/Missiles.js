@@ -40,7 +40,7 @@ export default class Missiles extends Phaser.Physics.Arcade.Group {
        missile.setActive(true) 
        missile.body.setVelocityY(-75);
     //    this.toggleVisible() 
-       console.log(missile)
+       //console.log(missile)
 
     //  this.scene.time.addEvent({
     //    delay: 3500,

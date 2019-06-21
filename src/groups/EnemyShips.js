@@ -5,13 +5,14 @@ import 'phaser';
 export default class EnemyShips extends Phaser.Physics.Arcade.Group {
     constructor(world, scene, children, spriteArray) {
         super(world, scene, children);
+
         this.scene = scene;
 
         this.createEnemyShip(1)
 
         this.createEnemyShipLoop()
 
-    
+        
 
     }
 
@@ -24,7 +25,7 @@ export default class EnemyShips extends Phaser.Physics.Arcade.Group {
 
             this.scene.physics.add.existing(enemyShip)
 
-            enemyShip.body.setSize(30, 30)
+            enemyShip.body.setSize(10, 10)
 
             enemyShip.body.setEnable(true);
 

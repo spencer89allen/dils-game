@@ -7,12 +7,19 @@ import EnemyShips from "../groups/EnemyShips";
 export default class GameScene extends Phaser.Scene {
   constructor() {
     super("Game");
+
+    
   }
+
   init() {
+        this.gameState = {
+          score: 0,
+      }
 
   }
 
   preload() {
+
   }
 
 
@@ -34,7 +41,11 @@ export default class GameScene extends Phaser.Scene {
 
     this.enemyShip = new EnemyShips(this.physics.world, this, [])
 
+    this.gameState.scoreText = this.add.text(25, 350, 'Score: 0', { fontSize: '15px', fill: '#ffffff' });
+
     this.addColliders()
+
+    console.log(this.gameState.score)
   }
   
   createCursor() {
@@ -68,7 +79,7 @@ export default class GameScene extends Phaser.Scene {
       this.add.text(180, 250, 'Game Over', { fontSize: '15px', fill: '#ffffff' });
       this.add.text(152, 270, 'Click to Restart', { fontSize: '15px', fill: '#ffffff' });
       this.input.on('pointerup', () =>{
-        // gameState.score = 0;
+        this.gameState.score = 0;
       this.scene.restart();
       });
 
@@ -84,6 +95,9 @@ export default class GameScene extends Phaser.Scene {
       enemyShip.isAlive = false;
       enemyShip.body.setEnable(false)
       enemyShip.destroy();
+      this.gameState.score += 10;
+      this.gameState.scoreText.setText(`Score: ${this.gameState.score}`);
+      missile.destroy();
     });
   }
 
